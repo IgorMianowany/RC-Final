@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://b44eg43mq7p14"]
+
+[ext_resource type="Script" uid="uid://g7s8myhuqtvg" path="res://grappling_hook.gd" id="1_636o4"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_m334j"]
+
+[node name="GrapplingHook" type="Node3D"]
+script = ExtResource("1_636o4")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_m334j")
+
+[node name="RayCast3D" type="RayCast3D" parent="."]
+transform = Transform3D(-32.00884, 0, 0, 0, -13.403767, 0, 0, 0, -1.976073, 0, 0, -0.50522584)
+target_position = Vector3(0, 0, 1)
+hit_from_inside = true
+collide_with_areas = true

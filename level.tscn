@@ -11,13 +11,13 @@ points = PackedVector3Array(-1, 0, -1, -1, 0, 1, 1, 0, -1, 1, 0, 1)
 [node name="Level" type="Node3D"]
 
 [node name="Player" parent="." instance=ExtResource("1_u52ul")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -17.004032, 0)
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, -17.004032, 0)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.7453131, -0.48937026, 0.45279703, 0, 0.6791467, 0.7340026, -0.6667146, -0.54706174, 0.50617695, -49.838715, 82.24616, -61.123276)
 
-[node name="House" parent="." instance=ExtResource("2_vonw3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 53.874985, -0.50403214, 24.53395)
+[node name="DirectionalLight3D2" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.4945489, 0.6379582, -0.59028023, 0, 0.6791467, 0.7340026, 0.86914986, 0.3630001, -0.3358712, -268.0927, 82.24616, -61.123276)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(8927.3125, 0, 0, 0, 1, 0, 0, 0, 9157.162, -1.1100922, -18.004028, 0.35760498)
@@ -27,3 +27,29 @@ mesh = SubResource("PlaneMesh_vonw3")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
 shape = SubResource("ConvexPolygonShape3D_vonw3")
+
+[node name="Map" type="Node3D" parent="."]
+
+[node name="House" parent="Map" instance=ExtResource("2_vonw3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 53.874985, -0.50403214, 24.53395)
+
+[node name="House2" parent="Map" instance=ExtResource("2_vonw3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -57.63482, -0.50403214, 24.53395)
+
+[node name="House3" parent="Map" instance=ExtResource("2_vonw3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 53.874985, -0.50403214, 150.79834)
+
+[node name="House4" parent="Map" instance=ExtResource("2_vonw3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -57.63482, -0.50403214, 150.79834)
+
+[node name="House5" parent="Map" instance=ExtResource("2_vonw3")]
+transform = Transform3D(-4.37113e-08, 0, 81.39147, 0, 97.98016, 0, -0.999998, 0, -3.5577343e-06, 53.874985, -0.50403214, -92.8513)
+
+[node name="House6" parent="Map" instance=ExtResource("2_vonw3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 53.874985, -0.50403214, 271.5868)
+
+[node name="House7" parent="Map" instance=ExtResource("2_vonw3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -57.63482, -0.50403214, 271.5868)
+
+[node name="House8" parent="Map" instance=ExtResource("2_vonw3")]
+transform = Transform3D(-8.830395e-09, 0, 1.1065412, 0, 0.11853662, 0, -0.2020159, 0, -4.8368452e-08, -4.3764668, 17.897982, 294.35654)

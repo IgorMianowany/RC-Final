@@ -1,13 +1,17 @@
-[gd_scene load_steps=4 format=3 uid="uid://22hv6nv2jb0f"]
+[gd_scene load_steps=6 format=3 uid="uid://22hv6nv2jb0f"]
 
 [ext_resource type="Script" uid="uid://dh86iydwq6rcv" path="res://player.gd" id="1_4flbx"]
+[ext_resource type="Texture2D" uid="uid://cmq0ax3fctngx" path="res://icons8-crosshair-32.png" id="2_onrkg"]
+[ext_resource type="PackedScene" uid="uid://b44eg43mq7p14" path="res://grappling_hook.tscn" id="3_i3pqv"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_sh265"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_sh265"]
 
 [node name="Player" type="CharacterBody3D"]
+collision_layer = 2
 script = ExtResource("1_4flbx")
+sensitivity = 300.0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("CapsuleMesh_sh265")
@@ -15,6 +19,37 @@ mesh = SubResource("CapsuleMesh_sh265")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_sh265")
 
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2635784, 3.0568504)
+[node name="CameraPivot" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.81390524, 0)
+
+[node name="Camera3D" type="Camera3D" parent="CameraPivot"]
+transform = Transform3D(1, 0, 0, 0, 0.99211687, 0.12531592, 0, -0.12531592, 0.99211687, 0, 0.9051182, 3.0568504)
 current = true
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="Control/MarginContainer"]
+position = Vector2(1, 0)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("2_onrkg")
+
+[node name="GrapplingHookRight" parent="." instance=ExtResource("3_i3pqv")]
+
+[node name="GrapplingHookLeft" parent="." instance=ExtResource("3_i3pqv")]
+visible = false
