@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://bu38p3sepgw66"]
+
+[ext_resource type="PackedScene" uid="uid://22hv6nv2jb0f" path="res://player.tscn" id="1_u52ul"]
+[ext_resource type="PackedScene" uid="uid://xlku3rbde2gw" path="res://house.tscn" id="2_vonw3"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_vonw3"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_vonw3"]
+points = PackedVector3Array(-1, 0, -1, -1, 0, 1, 1, 0, -1, 1, 0, 1)
+
+[node name="Level" type="Node3D"]
+
+[node name="Player" parent="." instance=ExtResource("1_u52ul")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -17.004032, 0)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.7453131, -0.48937026, 0.45279703, 0, 0.6791467, 0.7340026, -0.6667146, -0.54706174, 0.50617695, -49.838715, 82.24616, -61.123276)
+
+[node name="House" parent="." instance=ExtResource("2_vonw3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 53.874985, -0.50403214, 24.53395)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(8927.3125, 0, 0, 0, 1, 0, 0, 0, 9157.162, -1.1100922, -18.004028, 0.35760498)
+mesh = SubResource("PlaneMesh_vonw3")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_vonw3")
