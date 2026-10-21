@@ -19,7 +19,7 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
 	if not is_on_floor():
-		velocity += get_gravity() * delta
+		velocity += get_gravity() * delta * 5
 
 	# Handle jump.
 	if Input.is_action_just_pressed("jump") and is_on_floor():
@@ -29,13 +29,16 @@ func _physics_process(delta: float) -> void:
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	var input_dir := Input.get_vector("left", "right", "forward", "backward")
 	var direction := (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+	if (right_hook.position != Vector3.ZERO and right_hook.hooked):
+		direction += position.direction_to(right_hook.position) * 1.5
 	if direction:
+		if (direction.y != 0):
+			velocity.y = direction.y * SPEED
 		velocity.x = direction.x * SPEED
 		velocity.z = direction.z * SPEED
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		velocity.z = move_toward(velocity.z, 0, SPEED)
-		
 	#look_at(direction)
 	move_and_slide()
 
@@ -50,14 +53,20 @@ func _input(event: InputEvent) -> void:
 
 	if (event.is_action_pressed("fire_right_hook")):
 		fire_right_hook()
+	if (event.is_action_released("fire_right_hook")):
+		release_right_hook()
 		
 func fire_right_hook():
+	right_hook.hooked = false
 	var dir = get_aimed_at_direction()
 	right_hook.reparent(get_parent())
 	#right_hook.transform.origin = get_aimed_at_direction()
 	#right_hook.rotation = rotation
 	right_hook.look_at(transform.origin + dir)
 	right_hook.fire(dir)
+
+func release_right_hook():
+	right_hook.reset_hook()
 	
 func get_aimed_at_direction() -> Vector3:
 	var cam = get_viewport().get_camera_3d()

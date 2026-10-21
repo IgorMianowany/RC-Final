@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://g7s8myhuqtvg" path="res://grappling_hook.gd" id="1_636o4"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_m334j"]
+size = Vector3(0.2, 0.2, 0.2)
 
 [node name="GrapplingHook" type="Node3D"]
 script = ExtResource("1_636o4")
